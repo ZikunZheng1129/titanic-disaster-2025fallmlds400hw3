@@ -55,7 +55,7 @@ cat("Q15: features:", paste(feats, collapse = ", "), "| target:", target, "\n")
 na_feats <- sapply(df[, feats, drop = FALSE], function(x) sum(is.na(x)))
 print(na_feats)
 
-# ensure Fare has no NA in train (should already be fine, but keep identical to python’s intent)
+# ensure Fare has no NA in train (should already be fine)
 if (any(is.na(df$Fare))) {
     fare_med_train <- median(df$Fare, na.rm = TRUE)
     df$Fare[is.na(df$Fare)] <- fare_med_train
