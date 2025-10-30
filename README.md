@@ -147,6 +147,42 @@ outputs/predictions_r.csv
 
 Note: install_packages.R is intentionally minimal (no packages installed) because there's no additional package required to satisfy the assignment requirement.
 
+## Optional R packages (tidyverse, glmnet)
+
+This assignment does not require additional R packages, but the repo includes a standard way to add them if desired.
+
+- The file `src/rapp/install_packages.R` contains a commented installer for:
+  - `tidyverse`
+  - `glmnet`
+
+- The file `src/rapp/main.R` contains commented `library()` lines for the same packages.
+
+They are **commented out by default** to keep the Docker image small and the build fast. If you want to enable them:
+
+1) Edit `src/rapp/install_packages.R` and uncomment:
+   ```r
+   packages <- c("tidyverse", "glmnet")
+   for (pkg in packages) {
+     if (!requireNamespace(pkg, quietly = TRUE)) {
+       install.packages(pkg, repos = "https://cloud.r-project.org")
+     }
+   }
+   ```
+2) Edit src/rapp/main.R and uncomment:
+   ```r
+   library(tidyverse)
+   library(glmnet)
+   ```
+3) Rebuild and run the R image:
+  ```bash
+  docker build -t myfirstapp-r -f src/rapp/Dockerfile .
+  docker run --rm \
+    -v "$PWD/src/data:/app/src/data" \
+    -v "$PWD/outputs:/app/outputs" \
+    myfirstapp-r
+
+  ```
+
 
 
 

@@ -1,6 +1,11 @@
 # src/rapp/main.R
 cat("Titanic HW3 Docker (R) run OK.\n")
 
+# Optional imports (not required for this assignment run).
+# Uncomment if you want to use these packages.
+# library(tidyverse)
+# library(glmnet)
+
 set.seed(42)
 
 # Q13
